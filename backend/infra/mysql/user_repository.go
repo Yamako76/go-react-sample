@@ -7,7 +7,7 @@ import (
 
 	"gorm.io/gorm"
 
-	"github.com/Yamako76/go-react/domain"
+	"github.com/Yamako76/go-react-sample/domain"
 )
 
 type UserModel struct {

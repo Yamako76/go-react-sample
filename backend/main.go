@@ -7,8 +7,9 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 
-	"github.com/Yamako76/go-react/infra"
-	"github.com/Yamako76/go-react/infra/mysql"
+	"github.com/Yamako76/go-react-sample/infra"
+	"github.com/Yamako76/go-react-sample/infra/mysql"
+	"github.com/Yamako76/go-react-sample/usecase"
 )
 
 func main() {
@@ -25,23 +26,11 @@ func main() {
 	}
 	userRepository := mysql.NewUserRepository(db)
 
-	RegisterRoutes(e, Registry{
-		UserRepository: userRepository,
+	e.GET("/users/:id", func(c echo.Context) error {
+		return usecase.GetUser(c, userRepository)
 	})
 
 	if err := e.Start(":8080"); err != http.ErrServerClosed {
 		log.Fatalf("サーバーにエラーが発生しました: %v", err)
 	}
 }
-
-// func secureEndpoint(c echo.Context) error {
-// 	return c.String(http.StatusOK, "This is a secured endpoint!")
-// }
-
-// func AuthMiddleware(next echo.HandlerFunc) echo.HandlerFunc {
-// 	return func(c echo.Context) error {
-// 		// JWTの検証を行う処理をここに記述
-// 		// トークンが無効な場合、Unauthorizedエラーを返す
-// 		return next(c)
-// 	}
-// }

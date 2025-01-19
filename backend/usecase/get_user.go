@@ -3,7 +3,7 @@ package usecase
 import (
 	"github.com/labstack/echo/v4"
 
-	"github.com/Yamako76/go-react/domain"
+	"github.com/Yamako76/go-react-sample/domain"
 )
 
 type GetUserRequest struct {
