@@ -25,21 +25,6 @@ stop:
 down:
 	docker compose down
 
-# Dockerコンテナを停止してボリュームも削除
-.PHONY: down-v
-down-v:
-	docker compose down --volumes
-
-# フロントエンドコンテナにシェルで接続
-.PHONY: frontend
-frontend:
-	docker compose exec frontend sh
-
-# データベースコンテナにMySQLクライアントで接続
-.PHONY: sql
-sql:
-	docker compose exec db mysql -u root -p
-
 # Dockerコンテナのステータスを表示
 .PHONY: ps
 ps:
